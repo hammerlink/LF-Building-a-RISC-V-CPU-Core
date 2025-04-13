@@ -12,3 +12,12 @@ loadvenv:
     . venv/bin/activate
     # Virtual environment loaded
 
+install-makerchip:
+    ./venv/bin/pip3 install setuptools
+    ./venv/bin/pip3 install makerchip-app
+
+run-makerchip:
+    # Load the virtual environment
+    source ./venv/bin/activate
+    # Run Makerchip
+    makerchip ./src/risc-v_shell.tlv
