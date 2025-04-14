@@ -59,6 +59,12 @@
    $rs2[4:0] = $instr[24:20];
    $rd[4:0] = $instr[11:7];
    
+   $funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+   $rs1_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+   $rs2_valid = $is_r_instr || $is_s_instr || $is_b_instr;
+   $rd_valid = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+   $imm_valid = !$is_r_instr;
+   
    
    // Assert these to end simulation (before Makerchip cycle limit).
    *passed = 1'b0;
