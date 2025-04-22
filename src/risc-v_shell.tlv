@@ -66,7 +66,7 @@
    $is_lui = $opcode == 7'b011_0111;
    $is_auipc = $opcode == 7'b001_0111;
    $is_jal = $opcode == 7'b110_1111;
-   $is_jalb = $dec_bits ==? 11'bx_000_110_0111;
+   $is_jalr = $dec_bits ==? 11'bx_000_110_0111;
    $is_slti = $dec_bits ==? 11'bx_010_001_0011;
    $is_sltiu = $dec_bits ==? 11'bx_011_001_0011;
    $is_xori = $dec_bits ==? 11'bx_100_001_0011;
@@ -114,7 +114,10 @@
     $is_auipc ? $pc + $imm :
     $is_jal ? $pc + 32'd4 :
     $is_jalr ? $pc + 32'd4 :
-    
+    $is_slt ? ( ($src1_value[31] == $src2_value[31]) ? $sltu_result : {31'b0, $src1_value[31]} ) :
+    $is_slti ? ( ($src1_value[31] == $imm[31]) ? $sltiu_result : {31'b0, $src1_value[31]} ) :
+    $is_sra ? $sra_result[31:0] :
+    $is_srai ? $srai_result[31:0] :
                32'b0;
    
    $taken_br =
