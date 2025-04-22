@@ -61,15 +61,29 @@
    $is_addi = $dec_bits ==? 11'bx_000_0010011;
    $is_add = $dec_bits ==? 11'b0_000_0110011;
    // Load & Store instructions
-   $is_lb = $dec_bits ==? 11'bx_000_000_0011;
-   $is_lh = $dec_bits ==? 11'bx_001_000_0011;
-   $is_lw = $dec_bits ==? 11'bx_010_000_0011;
-   $is_lbu = $dec_bits ==? 11'bx_100_000_0011;
-   $is_lhu = $dec_bits ==? 11'bx_101_000_0011;
-   $is_sb = $dec_bits ==? 11'bx_000_010_0011;
-   $is_sh = $dec_bits ==? 11'bx_001_010_0011;
-   $is_sw = $dec_bits ==? 11'bx_010_010_0011;
    $is_load = $opcode ==? 7'b0x0_0011;
+   // Remaining instructions
+   $is_lui = $opcode == 7'b011_0111;
+   $is_auipc = $opcode == 7'b001_0111;
+   $is_jal = $opcode == 7'b110_1111;
+   $is_jalb = $dec_bits ==? 11'bx_000_110_0111;
+   $is_slti = $dec_bits ==? 11'bx_010_001_0011;
+   $is_sltiu = $dec_bits ==? 11'bx_011_001_0011;
+   $is_xori = $dec_bits ==? 11'bx_100_001_0011;
+   $is_ori = $dec_bits ==? 11'bx_110_001_0011;
+   $is_andi = $dec_bits ==? 11'bx_111_001_0011;
+   $is_slli = $dec_bits == 11'b0_001_001_0011;
+   $is_srli = $dec_bits == 11'b0_101_001_0011;
+   $is_srai = $dec_bits == 11'b1_101_001_0011;
+   $is_sub = $dec_bits == 11'b1_000_011_0011;
+   $is_sll = $dec_bits == 11'b0_001_011_0011;
+   $is_slt = $dec_bits == 11'b0_010_011_0011;
+   $is_sltu = $dec_bits == 11'b0_011_011_0011;
+   $is_xor = $dec_bits == 11'b0_100_011_0011;
+   $is_srl = $dec_bits == 11'b0_101_011_0011;
+   $is_sra = $dec_bits == 11'b1_101_011_0011;
+   $is_or = $dec_bits == 11'b0_110_011_0011;
+   $is_and = $dec_bits == 11'b0_111_011_0011;
    
    `BOGUS_USE($is_beq $is_bne $is_blt $is_bge $is_bltu $is_bgeu $is_addi $is_add)
    
