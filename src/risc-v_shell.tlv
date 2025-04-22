@@ -85,7 +85,14 @@
    $is_or = $dec_bits == 11'b0_110_011_0011;
    $is_and = $dec_bits == 11'b0_111_011_0011;
    
-   `BOGUS_USE($is_beq $is_bne $is_blt $is_bge $is_bltu $is_bgeu $is_addi $is_add)
+   // ALU instructions
+   // SLTU AND SLTIU ( Set if Less Then Unsigned)
+   $sltu_result[31:0] = {31'b0, $src1_value < $src2_value};
+   $sltiu_result[31:0] = {31'b0, $src1_value < $imm};
+   // SRA AND SRAI (Shift Right, Arithmic)
+   $sext_src1[63:0] = { {32{$src1_value[31]}}, $src1_value};
+   $sra_result[63:0] = $sext_src1 >> $src2_value[4:0];
+   $srai_result[63:0] = $sext_src1 >> $imm[4:0];
    
    $result[31:0] =
     $is_addi ? $src1_value + $imm :
